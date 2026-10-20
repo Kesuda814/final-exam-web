@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import {
   Container, Typography, Button, Box, Card, CardContent, Stack,
 } from "@mui/material";
-import {UserContext} from "../context/UserContext.jsx";
+import UserContext from "../context/UserContext.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

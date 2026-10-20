@@ -5,7 +5,7 @@ import {
   Container, Typography, Button, TextField, Box, Card, CardContent,
   CardActions, Stack,
 } from "@mui/material";
-import {UserContext} from "../context/UserContext.jsx";
+import UserContext from "../context/UserContext.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

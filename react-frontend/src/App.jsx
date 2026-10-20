@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import TeacherCoursesPage from "./pages/TeacherCoursesPage.jsx";
 import StudentCoursesPage from "./pages/StudentCoursesPage.jsx";
 import StudentEnrollmentsPage from "./pages/StudentEnrollmentsPage.jsx";
-import { UserContext } from "./context/UserContext.jsx";
+import  UserContext  from "./context/UserContext.jsx";
 
 function Protected({ roles, children }) {
   const { user, loading } = useContext(UserContext);

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Container, Box, TextField, Button, Typography, Alert, Paper,
 } from "@mui/material";
-import {UserContext} from "../context/UserContext.jsx";
+import UserContext from "../context/UserContext.jsx";
 
 export default function LoginPage() {
   const { user, login } = useContext(UserContext);
