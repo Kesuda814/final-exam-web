@@ -1,6 +1,3 @@
-
-//src/app/api/auth/login/route.js
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { getClientPromise } from "@/lib/mongodb";
@@ -51,6 +48,7 @@ export async function POST(request) {
     const response = NextResponse.json(
       {
         message: "Login successful",
+        token: token, // <--- ADDED: Sends token to frontend
         user: {
           id: user._id.toString(),
           username: user.username,
