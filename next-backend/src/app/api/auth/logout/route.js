@@ -27,8 +27,3 @@ export async function OPTIONS() {
   return new NextResponse(null, { status: 204, headers: corsHeaders });
 }
 
-//src/app/api/auth/logout/route.js
-
-/**
- * Your logout codes goes here
- */
