@@ -1,5 +1,3 @@
-//src/pages/TeacherCoursesPage.jsx
-
 import { useContext, useEffect, useState } from "react";
 import {
   Container, Typography, Button, TextField, Box, Card, CardContent,
@@ -8,7 +6,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import {UserContext} from "../context/UserContext.jsx";
+import UserContext from "../context/UserContext.jsx";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const STATUSES = ["Open", "Close", "Cancel"];
@@ -24,8 +22,17 @@ export default function TeacherCoursesPage() {
   const [studentsOf, setStudentsOf] = useState(null);
   const [students, setStudents] = useState([]);
 
+  // Helper to get headers with token
+  const getHeaders = () => {
+    const token = localStorage.getItem("token");
+    return token ? { "Authorization": `Bearer ${token}` } : {};
+  };
+
   async function loadCourses() {
-    const res = await fetch(`${API_URL}/course`, { credentials: "include" });
+    const res = await fetch(`${API_URL}/course`, { 
+      credentials: "include",
+      headers: getHeaders()
+    });
     if (res.ok) setCourses(await res.json());
   }
 
@@ -47,7 +54,10 @@ export default function TeacherCoursesPage() {
     const url = editing ? `${API_URL}/course/${editing._id}` : `${API_URL}/course`;
     const res = await fetch(url, {
       method: editing ? "PUT" : "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        ...getHeaders()
+      },
       credentials: "include",
       body: JSON.stringify(body),
     });
@@ -66,16 +76,17 @@ export default function TeacherCoursesPage() {
     const res = await fetch(`${API_URL}/course/${courseId}`, {
       method: "DELETE",
       credentials: "include",
+      headers: getHeaders(),
     });
     const data = await res.json();
     setMessage(res.ok ? "Course deleted" : data.message);
     loadCourses();
   }
 
-
   async function viewStudents(course) {
     const res = await fetch(`${API_URL}/course/${course._id}`, {
       credentials: "include",
+      headers: getHeaders(),
     });
     if (res.ok) {
       const data = await res.json();
